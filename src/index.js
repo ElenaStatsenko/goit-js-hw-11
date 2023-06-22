@@ -7,6 +7,9 @@ const url = ` https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng
 
 selectForm = document.querySelector('.breed-select');
 
-fetch('https://api.thecatapi.com/v1/images/search?breed_ids=${}').then(data => {
-    console.log(data)
+fetch('https://api.thecatapi.com/v1/breeds').then(response=> {
+    
+ return response.json();
+}).then(cat => {
+    console.log(cat);
 })
