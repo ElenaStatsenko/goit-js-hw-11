@@ -1,2 +1,0 @@
-!function(){" https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key= ".concat("live_fksKLT6b3rWXK0Tu5oRKNInMZzCgNp9DLE15zuaKYxGuWwhtQAtLVAUkFZrwCO5a");selectForm=document.querySelector(".breed-select"),selectForm.addEventListener("click",void fetch("https://api.thecatapi.com/v1/breeds").then((function(e){return e.json()})).then((function(e){var t,n=e.map((function(e){var t=e.id,n=e.name;return"".concat(t," ").concat(n)})).join("");console.log(n),t={id:id,name:name},t.id,t.name})))}();
-//# sourceMappingURL=index.8a7101d6.js.map
