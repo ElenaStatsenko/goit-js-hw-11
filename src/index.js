@@ -27,19 +27,25 @@ fetch('https://api.thecatapi.com/v1/breeds').then(response=> {
 
     //функция вызова картинки по породе 
     function fetchCatByBreed(e) {
-        
         const breedId = e.target.value;
-        const url = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${key}`;
+        const urlCat = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${key}`;
 
         // console.log(breedId);
       
         
-        fetch(url).then(response=> {
+        fetch(urlCat).then(response=> {
             return response.json();
             }).then(cat => {
-            console.log(cat);
+                const divCat = document.querySelector ('.cat-info');
+                return catBreed = cat.map(({url}) => `
+                
+                    <img src='${url}'>
+               
+                ` );
+               
+                
             })
-    }
+            }
 
 
 
