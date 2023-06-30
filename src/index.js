@@ -37,25 +37,25 @@ fetch('https://api.thecatapi.com/v1/breeds').then(response=> {
         .then(response=> {
             return response.json();
             })
-        .then(cat => console.log(cat)
-         )
+        .then(cat =>  renderCat(cat))
+        .then(markup => console.log(markup))
     
         }
 
-    function 
+function renderCat(cat) {
+
+const catUrl = cat.map(cat => `
+ 
+ <img class="gallery__image" src='${cat.url}'>
+ `
+  ).join('');
+
+  return catDesc = cat.flatMap(cat => 
+    cat.breeds
+  )
+  
+}
             
 
-
-
-
-// function work() { /*...*/ }
-
-// if (document.readyState == 'loading') {
-//   // ещё загружается, ждём события
-//   document.addEventListener('DOMContentLoaded', work);
-// } else {
-//   // DOM готов!
-//   work();
-// }
 
 
