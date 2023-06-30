@@ -33,19 +33,17 @@ fetch('https://api.thecatapi.com/v1/breeds').then(response=> {
         // console.log(breedId);
       
         
-        fetch(urlCat).then(response=> {
+        fetch(urlCat)
+        .then(response=> {
             return response.json();
-            }).then(cat => {
-                const divCat = document.querySelector ('.cat-info');
-                return catBreed = cat.map(({url}) => `
-                
-                    <img src='${url}'>
-               
-                ` );
-               
-                
             })
-            }
+        .then(cat => console.log(cat)
+         )
+    
+        }
+
+    function 
+            
 
 
 
