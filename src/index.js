@@ -46,16 +46,21 @@ function renderCat(cat) {
 
 const catUrl = cat.map(cat => `
  
- <img class="gallery__image" src='${cat.url}'>
+ <img class="gallery__image" src='${cat.url}' width=300>
  `
   ).join('');
+  console.log(catUrl);
 
-  return catDesc = cat.flatMap(cat => 
-    cat.breeds
-  )
-  
+ const catBreed = cat.flatMap(cat => 
+  cat.breeds
+  ).map(item =>`
+  <h1>${item.name}</h1>
+  <p>${item.description}</p>
+  <p>${item.temperament}</p>
+  `
+    )
+    
+    divCat.innerHTML= catUrl + catBreed;
+        
 }
-            
-
-
-
+ 
