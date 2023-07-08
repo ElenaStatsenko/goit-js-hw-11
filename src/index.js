@@ -1,15 +1,20 @@
 // import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import Notiflix from 'notiflix';
 
 // const key = 'live_fksKLT6b3rWXK0Tu5oRKNInMZzCgNp9DLE15zuaKYxGuWwhtQAtLVAUkFZrwCO5a';
 
 const selectForm = document.querySelector('.breed-select');
 const divCat = document.querySelector('.cat-info');
-const pLoader = document.querySelector('.loader')
+const pLoader = document.querySelector('.loader');
+const pError = document.querySelector('.error')
+
 
 window.addEventListener('DOMContentLoaded', onClick)
+
 function onClick () {
-  showLoader();
+  pLoader.classList.remove('visually-hidden');   
+  textErorrhide();
   fetchBreeds()
   .then(cat => {
     const catBreed = cat.map(({id, name}) => `
@@ -19,7 +24,9 @@ function onClick () {
     ).join('')
     
     selectForm.innerHTML = catBreed; 
-  });
+   
+  })
+  .catch(error => onErorr());
 }
   
 selectForm.addEventListener('change', fetchCat);
@@ -28,14 +35,17 @@ selectForm.addEventListener('change', fetchCat);
   function fetchCat(e) {
     
     const breedId = e.target.value;
-    showLoader();
+    pLoader.classList.remove('visually-hidden'); 
+    textErorrhide();
     fetchCatByBreed(breedId) 
         .then(data => renderCat(data))
+        .catch(error => onErorr());
+        
   }
        
 
 function renderCat(cat) {
-  console.log(cat);
+
 const catUrl = cat.map(cat => `
  
  <img class="gallery__image" src='${cat.url}' width=300>
@@ -48,20 +58,20 @@ const catUrl = cat.map(cat => `
   <p>${item.temperament}</p>
   `
     )
-    
     divCat.innerHTML= catUrl + catBreed;
-    hideLoader()
+   
+    
         
 }
-// function onErorr(err) {
-//   console.log(err);
-// }
+
+function onErorr() {
+  Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+}
  
-function showLoader(){
-  pLoader.style.display = 'block';
+function textErorrhide() {
+  pError.style.display = 'none'; 
 }
-function hideLoader() {
-  pLoader.style.display = 'none';
-}
+
+
 
 
