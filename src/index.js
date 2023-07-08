@@ -1,4 +1,5 @@
 // import axios from "axios";
+import ({key, breedId}) './cat-api.js'
 
 const key = 'live_fksKLT6b3rWXK0Tu5oRKNInMZzCgNp9DLE15zuaKYxGuWwhtQAtLVAUkFZrwCO5a';
 
@@ -7,12 +8,8 @@ const divCat = document.querySelector('.cat-info');
 
 window.addEventListener('DOMContentLoaded', fetchBreeds())
 
-//функция рендера списка пород котов 
-function fetchBreeds() {
-fetch('https://api.thecatapi.com/v1/breeds').then(response=> {
-    
- return response.json();
-}).then(cat => {
+// функция рендера списка пород котов 
+ fetchBreeds().then(cat => {
     const catBreed = cat.map(({id, name}) => `
     
     <option value= ${id}>${name}</option>  
@@ -20,27 +17,16 @@ fetch('https://api.thecatapi.com/v1/breeds').then(response=> {
     ).join('')
     
     selectForm.innerHTML = catBreed;
-  })
-};
+  });
 
     selectForm.addEventListener('change', fetchCatByBreed);
 
     //функция вызова картинки по породе 
-    function fetchCatByBreed(e) {
-        const breedId = e.target.value;
-        const urlCat = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${key}`;
-
-        // console.log(breedId);
-      
-        
-        fetch(urlCat)
-        .then(response=> {
-            return response.json();
-            })
+   fetchCatByBreed(e) 
         .then(cat =>  renderCat(cat))
         .then(markup => console.log(markup))
     
-        }
+        
 
 function renderCat(cat) {
 
