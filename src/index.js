@@ -12,8 +12,11 @@ const pError = document.querySelector('.error')
 
 window.addEventListener('DOMContentLoaded', onClick)
 
+// функция получения навзвания всех пород
 function onClick () {
-  pLoader.classList.remove('visually-hidden');   
+  
+  pLoader.classList.remove('visually-hidden');
+
   textErorrhide();
   fetchBreeds()
   .then(cat => {
@@ -24,6 +27,7 @@ function onClick () {
     ).join('')
     
     selectForm.innerHTML = catBreed; 
+    pLoader.classList.add('visually-hidden');
    
   })
   .catch(error => onErorr());
@@ -35,10 +39,13 @@ selectForm.addEventListener('change', fetchCat);
   function fetchCat(e) {
     
     const breedId = e.target.value;
-    pLoader.classList.remove('visually-hidden'); 
+    
+  pLoader.classList.remove('visually-hidden'); 
     textErorrhide();
     fetchCatByBreed(breedId) 
-        .then(data => renderCat(data))
+        .then((data) => {renderCat(data)
+        pLoader.classList.add('visually-hidden');
+        })
         .catch(error => onErorr());
         
   }
